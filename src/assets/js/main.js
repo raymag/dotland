@@ -8,6 +8,11 @@ canvas.height = 600;
 let players = {}
 let fruits = [];
 
+function drawScore(player){
+    ctx.font = "30px Monospace";
+    ctx.fillStyle = '#2a2a2aaa';
+    ctx.fillText(`Fruits: ${player.score}`, 30, 30);
+}
 function drawFruit(fruit, fill){
     ctx.beginPath();
     ctx.rect(fruit.x, fruit.y, 60, 60);
@@ -32,6 +37,7 @@ function drawGame(){
         fill = "#2700ff66"
         if(player == socket.id){
             fill = "#a400ff66";
+            drawScore(players[player]);
         }
         drawPlayer(players[player], fill);
     }

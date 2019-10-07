@@ -10,11 +10,11 @@ const speed = 60;
 const size = 600;
 const fruitSpawnRate = 5;
 
-
 function playerGetFruit(player){
     for(let i=0; i<fruits.length;i++){
         if(fruits[i].x == player.x && fruits[i].y == player.y){
             fruits.splice(i, 1);
+            player.score++;
             break;
         }
     }
@@ -40,7 +40,8 @@ function gameUpdate() {
 function playerStart(socket) {
   players[socket.id] = {
     x: 0,
-    y: 0
+    y: 0,
+    score: 0
   };
   socket.emit("start", {players:players, fruits:fruits});
 }
