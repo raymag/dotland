@@ -41,12 +41,14 @@ function playerStart(socket) {
   players[socket.id] = {
     x: 0,
     y: 0,
-    score: 0
+    score: 0,
+    nickname: 'guess'
   };
   socket.emit("start", {players:players, fruits:fruits});
 }
-function playerMove(socket, move) {
-  switch (move) {
+function playerMove(socket, playerData) {
+  players[socket.id]['nickname'] = playerData['nickname'];
+  switch (playerData['move']) {
     case "up":
       if (players[socket.id]["y"] >= speed) {
         players[socket.id]["y"] -= speed;
@@ -77,7 +79,7 @@ express.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-io.on("connection", socket => {
+io.on("connection", (socket) => {
   playerStart(socket);
   console.log(`User ${socket.id} connected'`);
   socket.on("disconnect", () => {
