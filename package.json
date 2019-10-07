@@ -1,11 +1,14 @@
 {
   "name": "dotland",
   "version": "1.0.0",
-  "description": "",
+  "description": "online multiplayer game ",
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "game"
+  ],
   "author": "Carlos Magno Nascimento",
   "license": "MIT",
   "dependencies": {
