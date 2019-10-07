@@ -11,11 +11,19 @@
 </head>
 <body>
     <h1>DOTLAND</h1>
-    <canvas id="canvas"></canvas>
-    <div id="nickname-box">
-        <input type="text" id="nickname-input" value="DOT">
+    <div id="game-box">
+        <div id="left-side">
+            <canvas id="canvas"></canvas>
+            <div id="nickname-box">
+                <label for="nickname-input">Nickname</label><br>
+                <input type="text" id="nickname-input" value="DOT">
+            </div>
+        </div>
+        <div id="right-side">
+            <p><b>Score</b></p>
+            <div id="score-box"></div>
+        </div>
     </div>
-    <div id="score-box"></div>
     <script src="static/js/socket.io.js"></script>
     <script src="static/js/main.js"></script>
 </body>

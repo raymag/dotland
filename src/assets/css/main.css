@@ -1,23 +1,54 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-body{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-    background: #1908b1c7;
-    font-family: 'Poppins', sans-serif;
-    color: #eee;
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  background: #1908b1c7;
+  font-family: "Poppins", sans-serif;
+  color: #eee;
 }
-canvas{
-    border: none;
-    box-shadow: 3px 3px 5px 8px rgb(13, 1, 56, 0.1);
+canvas {
+  border: none;
+  box-shadow: 3px 3px 5px 8px rgb(13, 1, 56, 0.1);
+}
+
+#game-box #left-side {
+  float: left;
+  margin-right: 5px;
+}
+#game-box #right-side {
+  float: right;
+  margin-left: 5px;
+}
+
+#nickname-box input {
+  width: 600px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 2px;
+}
+#score-box{
+    min-width: 100px;
+}
+#score-box p {
+  padding: 2px 5px;
+  background: #1908b144;
+  width: 100%;
+  margin: 2px 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+#score-box p span {
+  color: rgb(238, 255, 0);
 }

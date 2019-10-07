@@ -11,12 +11,19 @@ let fruits = [];
 function clearScore(){
     document.querySelector('#score-box').innerHTML = '';
 }
-function drawScore(player){
+function drawScore(player, isPlayer){
     let score = document.createElement('p');
     let scorePoints = document.createElement('span');
     scorePoints.innerText = player.score;
     score.appendChild(scorePoints);
-    score.innerHTML += ` - ${player.nickname}`;
+    if(isPlayer == true){
+        let nickname = document.createElement('span');
+        nickname.innerText = player.nickname;
+        score.innerHTML += ' | ';
+        score.appendChild(nickname);
+    }else{
+        score.innerHTML += ` | ${player.nickname}`;    
+    }
     document.querySelector('#score-box').appendChild(score);
 }
 function drawPlayerScore(player){
@@ -46,13 +53,15 @@ function drawGame(){
     clearCanvas();
     clearScore();
     for(player in players){
-        fill = "#2700ff66"
+        fill = "#2700ff66";
+        let isPlayer = false;
         if(player == socket.id){
             fill = "#a400ff66";
             drawPlayerScore(players[player]);
+            isPlayer = true;
         }
         drawPlayer(players[player], fill);
-        drawScore(players[player]);
+        drawScore(players[player], isPlayer);
     }
     for(let i=0;i<fruits.length;i++){
         drawFruit(fruits[i], '#eeff0066');
