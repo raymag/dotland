@@ -5,20 +5,46 @@ const io = require("socket.io")(http);
 const app = require("express");
 
 let players = {};
+let fruits = []; 
+const speed = 60;
+const size = 600;
+const fruitSpawnRate = 5;
 
+
+function playerGetFruit(player){
+    for(let i=0; i<fruits.length;i++){
+        if(fruits[i].x == player.x && fruits[i].y == player.y){
+            fruits.splice(i, 1);
+            break;
+        }
+    }
+    gameUpdate();
+}
+function addFruit(){
+    let fruit = {
+        x : Math.floor(Math.random()*(10))*speed,
+        y: Math.floor(Math.random()*(10))*speed
+    }
+    fruits.push(fruit);
+}
+function spawnFruit(){
+    let n = Math.floor(Math.random() * (100));
+    if (n<=fruitSpawnRate){
+        addFruit();
+    }
+}
 function gameUpdate() {
-  io.emit("gameUpdate", players);
+  io.emit("gameUpdate", {players:players, fruits:fruits});
+  spawnFruit();
 }
 function playerStart(socket) {
   players[socket.id] = {
     x: 0,
     y: 0
   };
-  socket.emit("start", players);
+  socket.emit("start", {players:players, fruits:fruits});
 }
 function playerMove(socket, move) {
-  const speed = 60;
-  const size = 600;
   switch (move) {
     case "up":
       if (players[socket.id]["y"] >= speed) {
@@ -41,7 +67,7 @@ function playerMove(socket, move) {
       }
       break;
   }
-  gameUpdate();
+  playerGetFruit(players[socket.id]);
 }
 
 express.use("/static", app.static(__dirname + "/assets/"));
