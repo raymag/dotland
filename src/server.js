@@ -18,6 +18,7 @@ function playerStart(socket) {
 }
 function playerMove(socket, move) {
   const speed = 60;
+  const size = 600;
   switch (move) {
     case "up":
       if (players[socket.id]["y"] >= speed) {
@@ -25,7 +26,7 @@ function playerMove(socket, move) {
       }
       break;
     case "down":
-      if (players[socket.id]["y"] < 600 - speed) {
+      if (players[socket.id]["y"] < size - speed) {
         players[socket.id]["y"] += speed;
       }
       break;
@@ -35,7 +36,7 @@ function playerMove(socket, move) {
       }
       break;
     case "right":
-      if (players[socket.id]["x"] < 600 - speed) {
+      if (players[socket.id]["x"] < size - speed) {
         players[socket.id]["x"] += speed;
       }
       break;
