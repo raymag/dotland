@@ -13,11 +13,11 @@ let game = {
     update: (data) => {
         game.players = data.players
         game.fruits = data.fruits
-        game.render.render()
+        // game.render.render()
     },
     render: {
         render: () => {
-            console.log('Rendering')
+            // console.log('Rendering')
             let render = game.render
             render.clear()
             game.players = game.players.sort((a,b) => {
@@ -37,8 +37,9 @@ let game = {
                 render.drawScore(players[i], isPlayer)
             }
             for(let i=0;i<game.fruits.length;i++){
-                render.drawFruit(game.fruits[i], '#eeff0066');
+                render.drawFruit(game.fruits[i], '#eeff0066')
             }
+            requestAnimationFrame(game.render.render)
         },
         clear: () => {
             let ctx = game.canvas.getContext('2d')
@@ -99,6 +100,7 @@ socket.on('start', (data) => {
         scoreBox: document.querySelector('#score-box'),
         socket: socket
     })
+    game.render.render()
     game.update(data.game)
 });
 
