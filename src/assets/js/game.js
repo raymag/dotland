@@ -9,20 +9,19 @@ let game = {
         game.canvas = data.canvas
         game.scoreBox = data.scoreBox
         game.socket = data.socket
+        setInterval(game.render.render, 1000/30)
     },
     update: (data) => {
         game.players = data.players
         game.fruits = data.fruits
-        // game.render.render()
     },
     render: {
         render: () => {
-            // console.log('Rendering')
             let render = game.render
             render.clear()
             game.players = game.players.sort((a,b) => {
-                return parseFloat(a.score) - parseFloat(b.score)
-            }).reverse()
+                return parseFloat(b.score) - parseFloat(a.score)
+            })
             render.clearScore()
             let players = game.players
             for(let i=0;i<players.length;i++){
@@ -39,7 +38,6 @@ let game = {
             for(let i=0;i<game.fruits.length;i++){
                 render.drawFruit(game.fruits[i], '#eeff0066')
             }
-            requestAnimationFrame(game.render.render)
         },
         clear: () => {
             let ctx = game.canvas.getContext('2d')
@@ -100,7 +98,6 @@ socket.on('start', (data) => {
         scoreBox: document.querySelector('#score-box'),
         socket: socket
     })
-    game.render.render()
     game.update(data.game)
 });
 
