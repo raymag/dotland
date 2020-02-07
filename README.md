@@ -8,6 +8,6 @@ A simple HTML5 multiplayer online game built with NodeJS and Socket.io. Availabl
 $ git clone https://github.com/raymag/dotland
 $ cd dotland
 $ npm install
-$ npm src/server.js
+$ node src/server.js
 ```
 
